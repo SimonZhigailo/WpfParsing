@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfParsingFinal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfParsingFinal.ViewModel"
+        Title="XmlParser" Height="455.333" Width="711.5">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Загрузить" HorizontalAlignment="Left" Margin="342,318,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenFileCommand}"/>
+        <ListBox Name="Terminals"  HorizontalAlignment="Left" Margin="74,95,0,0" VerticalAlignment="Top" Height="243" Width="254" SelectedItem="{Binding _data.SelectedTerminal, Mode=TwoWay}" ItemsSource="{Binding _data.Terminals}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Протокол : "/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Protocol}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Серийный номер : "/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=SerialId}" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Номер СИМ : "/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=SimNumber}" />
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Время соединения : "/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=ConnectionTime}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="Sensors"   HorizontalAlignment="Left" Margin="402,95,0,0" VerticalAlignment="Top" Height="175" Width="210" RenderTransformOrigin="0.311,0.278" ItemsSource="{Binding _data.SelectedTerminal.Sensors}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Тип : "/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Type}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Значение : "/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Value}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Состояние сервера:" VerticalAlignment="Top" RenderTransformOrigin="0.56,3.5"/>
+        <TextBox HorizontalAlignment="Left" Height="15" Margin="320,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Text="{Binding _data.ServerTimeSpan}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="15" Margin="124,14,0,0" TextWrapping="Wrap" Background="{Binding _data.ServerColor}" VerticalAlignment="Top" Width="12" RenderTransformOrigin="0.489,0.479" IsReadOnly="True"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="185,13,0,0" TextWrapping="Wrap" Text="Время начала:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="15" Margin="267,14,0,0" TextWrapping="Wrap" Text="{Binding _data.BeginDate}" VerticalAlignment="Top" Width="140"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="441,13,0,0" TextWrapping="Wrap" Text="Время конца:" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="15" Margin="520,14,0,0" TextWrapping="Wrap" Text="{Binding _data.EndDate}" VerticalAlignment="Top" Width="112"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="218,43,0,0" TextWrapping="Wrap" Text="Server Time Span:" VerticalAlignment="Top"/>
+        <Button x:Name="saveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="431,318,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>
