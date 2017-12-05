@@ -32,7 +32,11 @@ namespace WpfParsingFinal.Model
         }
         public SolidColorBrush ServerColor
         {
-            get { if (ServerState) return new SolidColorBrush(Colors.Blue);
-                else return new SolidColorBrush(Colors.Red); }
+            get
+            {
+                if (ServerState) return new SolidColorBrush(Colors.Blue);
+                else return new SolidColorBrush(Colors.Red);
+            }
         }
+    }
 }
